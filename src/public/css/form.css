@@ -1,0 +1,67 @@
+.modal-body{
+    text-align: center;
+}
+#add_email{
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 0 auto;
+    padding: 1rem 1rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgb(0, 0, 0);
+    width: 90%;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    font-size: 20px;
+    transition: all .2s ease-in-out;
+}
+
+#add_email:focus{
+    border: 2px solid rgb(146, 146, 146);
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    transform: scale(1.05);
+}
+
+li.contact_search{
+    margin: 5px;
+    background-color: #f5f5f5;
+    padding: 5px;
+    transition: all .2s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+}
+
+li.contact_search:hover{
+    background-color: #aaaaaa;
+    transform: scale(1.05);
+}
+.img_search{
+    width: 40px;
+    height: 40px;
+
+}
+
+.button_add_contact {
+    display: inline-block;
+    padding: 0.6em 1.7em;
+    border: 0.1em solid #ffffff;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #f8f8f8;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #444444;
+}
+  
+.button_add_contact:hover {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.button_add_contact:active {
+    transform: scale(0.9);
+}

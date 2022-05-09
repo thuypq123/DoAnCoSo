@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset200802.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/chat.css">
+        <link rel="stylesheet" href="./css/loadding.css">
+        <link rel="stylesheet" href="./css/modal.css">
+        <link rel="stylesheet" href="./css/form.css">
+        <link rel="stylesheet" href="./css/responsive.css">
+        
+        <script src="/socket.io/socket.io.js"></script>
+        <title>CHAT</title>
+    </head>
+    <body>
+        <div id="frame">
+            
+            <input type="checkbox" id="control-modal" style="display:none"/>
+            <label for="control-modal" class="btn hide">Click here to show modal</label>
+            <div class="modal">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add contact</h3>
+                  <label for="control-modal" class="modal-close">X</label>
+                </div>
+                <div class="modal-body">
+                    <div class="addContact">
+                        <input type="text" name="gmail" id="add_email" placeholder="gmail">
+                        <!-- <button class="addContact">AddContact</button> -->
+                    </div>
+                    <div class="listContact">
+                        <ul class="list">
+                            <!-- <li class="contact_search"><img class="img_search" src="https://www.w3schools.com/howto/img_avatar.png">lmthuy@gmail.com <button class = "button_add_contact">add</button></li> -->
+                        </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div id="sidepanel">
+                <div id="profile">
+                    <div class="wrap">
+                        <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+                        <p>Mike Ross</p>
+                        <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+                        <div id="status-options">
+                            <ul>
+                                <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+                                <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+                                <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+                                <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                            </ul>
+                        </div>
+                        <div id="expanded">
+                            <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="mikeross" />
+                            <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="ross81" />
+                            <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
+                            <input name="twitter" type="text" value="mike.ross" />
+                        </div>
+                    </div>
+                </div>
+                <div id="search">
+                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+                    <input type="text" placeholder="Search contacts..." />
+                </div>
+                <div id="contacts">
+                    <ul class = "listContacts">
+                        <!-- <li class="contact">
+                            <div class="wrap">
+                                <span class="contact-status online"></span>
+                                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+                                <div class="meta">
+                                    <p class="name">Louis Litt</p>
+                                    <p class="preview">You just got LITT up, Mike.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact active">
+                            <div class="wrap">
+                                <span class="contact-status busy"></span>
+                                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                                <div class="meta">
+                                    <p class="name">Harvey Specter</p>
+                                    <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+                                </div>
+                            </div>
+                        </li> -->
+                        <div id="loadding">
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        
+                    </ul>
+                </div>
+                <div id="bottom-bar">
+                    <!-- <button id="addcontact" type="checkbox"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button> -->
+                    <!-- <button id="control-modal addcontact" type="checkbox"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button> -->
+                    <input type="checkbox" id="control-modal" style="display:none"/>
+                    <label for="control-modal" class="btn"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></label>
+                    <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="contact-profile">
+                    <img class="img-contact-profile" src="http://cdn.onlinewebfonts.com/svg/img_569204.png" alt="" />
+                    <p class = "contact-profile-name"></p>
+                </div>
+                <div class="messages">
+                    <ul class = "listText" >
+                        <div id="loadding">
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                    </ul>
+                </div>
+                <div class="message-input">
+                    <div class="wrap">
+                    <input type="text" placeholder="Write your message..." />
+                    <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/addContact.js"></script>
+</html>
