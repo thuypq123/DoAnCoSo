@@ -44,6 +44,21 @@ li.contact_search:hover{
 .button_add_contact {
     display: inline-block;
     padding: 0.6em 1.7em;
+    border: 0.1em solid #76ff64;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #fafafa;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #86fa86;
+}
+button.button_delete_contact{
+    display: inline-block;
+    padding: 0.6em 1.7em;
     border: 0.1em solid #ffffff;
     margin: 0 0.3em 0.3em 0;
     border-radius: 0.12em;
@@ -54,14 +69,21 @@ li.contact_search:hover{
     color: #f8f8f8;
     text-align: center;
     transition: all 0.2s;
-    background-color: #444444;
+    background-color: #ff4b4b; 
 }
-  
-.button_add_contact:hover {
-    color: #000000;
+.button_delete_contact:hover {
+    border: 0.1em solid #ff2727;
+    color: #ff2727;
     background-color: #ffffff;
 }
-
+.button_add_contact:hover {
+    border: 0.1em solid #76ff64;
+    color: #80fc9f;
+    background-color: #ffffff;
+}
+.button_delete_contact:active {
+    transform: scale(0.9);
+}
 .button_add_contact:active {
     transform: scale(0.9);
 }

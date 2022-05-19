@@ -61,7 +61,7 @@ $(window).on('keydown', function(e) {
 //=============Function=============
 const renderUser = (user) =>{
 	var img = document.querySelector(".img-contact-profile");
-	img.src = "http://cdn.onlinewebfonts.com/svg/img_569204.png";
+	img.src = user.avatar!==undefined ? './images/'+user.avatar : "http://cdn.onlinewebfonts.com/svg/img_569204.png";
 	const userName = document.querySelector(".contact-profile-name");
 	userName.innerHTML = "";
 	const textname = document.createTextNode(user.fullname);
@@ -106,6 +106,7 @@ const chosseConversation =(e) =>{
 	}
 }
 const renderConversationUser = (data) =>{
+	console.log(data);
 	var listContact = document.querySelector(".listContacts");
 	var liContact = document.createElement("li");
 	liContact.className = "contact ";
@@ -119,8 +120,10 @@ const renderConversationUser = (data) =>{
 	span.className = "contact-status online";
 	wrap.appendChild(span);
 	var img = document.createElement("img");
-	img.src = "http://emilcarlsson.se/assets/louislitt.png";
+	img.src = data.avatar!==undefined?`images/${data.avatar}`:"http://cdn.onlinewebfonts.com/svg/img_569204.png";
 	img.alt = "";
+	img.style.width = "50px";
+	img.style.height = "50px";
 	wrap.appendChild(img);
 	var meta = document.createElement("div");
 	meta.className = "meta";
@@ -139,9 +142,9 @@ const renderConversationUser = (data) =>{
 renderMessages = (data) =>{
 	var li = document.createElement("li");
 	li.className = data.user_id===getCookie("id")?"sent":"replies";
-	var img = document.createElement("img");
-	img.src = "http://emilcarlsson.se/assets/mikeross.png";
-	li.appendChild(img);
+	// var img = document.createElement("img");
+	// img.src = "http://emilcarlsson.se/assets/mikeross.png";
+	// li.appendChild(img);
 	var p = document.createElement("p");
 	p.innerHTML = data.text;
 	li.appendChild(p);
@@ -180,4 +183,15 @@ socket.on("chooseConversation", ({allMessages,user}) => {
 	})
 	activeContact();
 	$(".messages").animate({ scrollTop: $(document).height()*2000 }, "fast");
+})
+socket.on('redirect', function(destination) {
+    window.location.href = destination;
+});
+socket.on('renderMainUser', (data) => {
+	if(data.avatar){
+		document.querySelector(".img_avatar").src ='./images/'+ data.avatar;
+	}else{
+		document.querySelector(".img_avatar").src ='http://cdn.onlinewebfonts.com/svg/img_569204.png';
+	}
+	document.querySelector(".name").innerHTML = data.fullname;
 })

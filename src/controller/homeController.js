@@ -8,9 +8,19 @@ exports.getHome = (req, res, next) =>{
     const cookies = req.cookies;
     let homePath = path.join(__dirname, '../view/login.html');
     res.sendFile(homePath);
-    if(cookies.token){
+    const verify = jwt.verify(cookies.token,secret,(err,decoded)=>{
+        if(err){
+            return false;
+        }else{
+            return true;
+        }
+    });
+    if(verify){
         res.redirect('/chat');
+    }else{
+        res.sendFile(homePath);
     }
+    
 }
 
 exports.postHome = async (req, res, next) =>{
@@ -21,14 +31,15 @@ exports.postHome = async (req, res, next) =>{
             const email = userLogin.email;
             token = jwt.sign({email: email,id:id},secret);
             res.cookie("token",token);
+            res.cookie("conversation", 0);
             res.cookie("id",id.toString());
             res.redirect('/chat');
         }
         else{
-            res.redirect('/');
+            res.sendFile(path.join(__dirname, '../view/errorSingin.html'));
         }
     }
     else{
-        res.redirect('/');
+        res.sendFile(path.join(__dirname, '../view/errorSingin.html'));
     }
 }

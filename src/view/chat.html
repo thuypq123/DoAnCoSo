@@ -10,6 +10,7 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <link rel="stylesheet" href="/css/chat.css">
         <link rel="stylesheet" href="./css/loadding.css">
         <link rel="stylesheet" href="./css/modal.css">
@@ -37,7 +38,7 @@
                     </div>
                     <div class="listContact">
                         <ul class="list">
-                            <!-- <li class="contact_search"><img class="img_search" src="https://www.w3schools.com/howto/img_avatar.png">lmthuy@gmail.com <button class = "button_add_contact">add</button></li> -->
+                            <!-- <li class="contact_search"><img class="img_search" src="https://www.w3schools.com/howto/img_avatar.png">lmthuy@gmail.com<button" class = "button_add_contact delete"><i class="fa-solid fa-user-xmark"></i></button></li> -->
                         </ul>
                     </div>
                 </div>
@@ -48,8 +49,8 @@
             <div id="sidepanel">
                 <div id="profile">
                     <div class="wrap">
-                        <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-                        <p>Mike Ross</p>
+                        <img class = "img_avatar" id="profile-img" src="http://cdn.onlinewebfonts.com/svg/img_569204.png" class="online" alt="" />
+                        <p class = "name">hmm...</p>
                         <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
                         <div id="status-options">
                             <ul>
@@ -61,11 +62,11 @@
                         </div>
                         <div id="expanded">
                             <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
-                            <input name="twitter" type="text" value="mikeross" />
+                            <input name="twitter" type="text" value="Le Minh Thuy" />
                             <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
-                            <input name="twitter" type="text" value="ross81" />
+                            <input name="twitter" type="text" value="THUYXINHTRAI" />
                             <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
-                            <input name="twitter" type="text" value="mike.ross" />
+                            <input name="twitter" type="text" value="THUYXINHTRAI" />
                         </div>
                     </div>
                 </div>
@@ -105,8 +106,8 @@
                     <!-- <button id="addcontact" type="checkbox"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button> -->
                     <!-- <button id="control-modal addcontact" type="checkbox"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button> -->
                     <input type="checkbox" id="control-modal" style="display:none"/>
-                    <label for="control-modal" class="btn"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></label>
-                    <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+                    <label for="control-modal" class="btn"> <span>Add contact <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i></span></label>
+                    <button id="settings"> <a class="a_editprofile" href="/editprofile">setting<i class="fa fa-cog fa-fw" aria-hidden="true"></i></a></button>
                 </div>
             </div>
             <div class="content">

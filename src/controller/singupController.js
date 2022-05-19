@@ -16,11 +16,10 @@ exports.postSingup = async (req, res) => {
             created_at: new Date()
         });
         const token = jwt.sign({email:newUser.email, id:newUser._id},process.env.SECRET_KEY);
-        console.log(token);
-        res.cookie('token',token);
-        res.redirect('/chat');
+        res.cookie("conversation", 0);
+        res.redirect('/');
     }
     else {
-        res.redirect('/singup');
+        res.sendFile(path.join(__dirname, '../view/errorSingup.html'));
     }
 }

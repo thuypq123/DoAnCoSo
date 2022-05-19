@@ -22,6 +22,8 @@ const newMessage = require('./model/message');
 const getCookies = require('./library/getCookies');
 const console = require('console');
 const handleContactRouter = require('./router/handleContactRouter');
+const addContactRouter = require('./router/addContactRouter');
+const editProfileRouter = require('./router/editProfileRouter');
 
 
 app.use(express.json())
@@ -32,13 +34,22 @@ app.use('/',homeRouter);
 app.use('/singup',createUserRouter);
 app.use('/chat',chatRouter);
 app.use('/handleContact',handleContactRouter);
-
-
+app.use('/addContact',addContactRouter);
+app.use('/editprofile',editProfileRouter);
 
 io.on('connection', async (socket)=>{
    const cookies = socket.handshake.headers.cookie;
    const getToken = getCookies(cookies,"token");
-   const id = jwt.verify(getToken,env.parsed.SECRET_KEY).id;
+   const id = jwt.verify(getToken,env.parsed.SECRET_KEY,(err,decoded)=>{
+      if(err){
+         var destination = '/';
+         socket.emit('redirect', destination);
+      }else{
+         return decoded.id;
+      }
+   });
+   const mainUser= await user.findById(id);
+   socket.emit('renderMainUser',mainUser)
    const getconversationUser = await conversationUser.find({user_id:id});
    const getConversation = await Promise.all( getconversationUser.map(async item=>{
       return await conversationUser.findOne({conversation_id:item.conversation_id, user_id:{"$ne":id}});
@@ -48,7 +59,8 @@ io.on('connection', async (socket)=>{
       return {user_id:tempUser._id,
          fullname:tempUser.fullname,
          email:tempUser.email,
-         conversation:item.conversation_id,}
+         conversation:item.conversation_id,
+         avatar:tempUser.avatar,}
    }))
    socket.emit("getConversation",getUser);
    socket.on("sendmessage", async (data) =>{
@@ -72,6 +84,7 @@ io.on('connection', async (socket)=>{
       const getUser = await user.findOne({_id:getConversation.user_id});
       const userInfo = {
          fullname:getUser.fullname,
+         avatar:getUser.avatar
       }
       socket.emit("chooseConversation",{allMessages:gettAllMessages,user:userInfo});
    })
