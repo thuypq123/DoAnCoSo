@@ -13,7 +13,7 @@ const compareArr = (arr1, arr2) =>{
 }
 
 exports.getHandleContact = (req,res) => {
-    res.send({hello:"hello"})
+    res.send({hello:"hello"})   
 }
 
 exports.postHandleContact = async (req,res) => {

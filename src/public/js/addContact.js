@@ -52,6 +52,7 @@ const searchName = async () => {
             id: getCookie("id")
         }
     })
+    console.log(res.data);
     listContacts.innerHTML = "";
     res.data.map(item =>{
         renderList(item);
