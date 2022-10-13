@@ -46,13 +46,12 @@ const searchName = async () => {
     const value = inputAddMail.value;
     const res = await axios({
         method:"POST",
-        url:"https://vinhomesgroup.herokuapp.com/handleContact",
+        url:"http://localhost:3000/handleContact",
         data:{
             fullname:value,
             id: getCookie("id")
         }
     })
-    console.log(res.data);
     listContacts.innerHTML = "";
     res.data.map(item =>{
         renderList(item);
@@ -64,7 +63,7 @@ const postContacts = async (event) => {
     const idSearch = event.target.getAttribute("data-id");
     const res = await axios({
         method:"POST",
-        url:"https://vinhomesgroup.herokuapp.com/addContact",
+        url:"http://localhost:3000/addContact",
         data:{
             token: getCookie("token"),
             idSearch: idSearch,
