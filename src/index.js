@@ -81,7 +81,6 @@ io.on('connection', async (socket)=>{
    socket.on("chooseConversation",async ({conversation,user_id}) =>{
       const gettAllMessages = await newMessage.find({conversation_id:conversation});
       const getConversation = await conversationUser.findOne({conversation_id:conversation, user_id:{"$ne":user_id}});
-      if(getConversation!=null)
       var getUser = await user.findOne({_id:getConversation.user_id});
       const userInfo = {
          fullname:getUser.fullname,
