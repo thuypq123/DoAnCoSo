@@ -22,7 +22,7 @@ const newMessage = require('./model/message');
 const getCookies = require('./library/getCookies');
 const console = require('console');
 const handleContactRouter = require('./router/handleContactRouter');
-const addContactRouter = require('./router/addContactRouter');
+const addContactRouter = require('./router/addcontactRouter');
 const editProfileRouter = require('./router/editProfileRouter');
 
 
