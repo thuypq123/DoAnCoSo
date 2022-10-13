@@ -46,7 +46,7 @@ const searchName = async () => {
     const value = inputAddMail.value;
     const res = await axios({
         method:"POST",
-        url:"http://localhost:3000/handleContact",
+        url:"https://vinhomesgroup.herokuapp.com/handleContact",
         data:{
             fullname:value,
             id: getCookie("id")
@@ -63,7 +63,7 @@ const postContacts = async (event) => {
     const idSearch = event.target.getAttribute("data-id");
     const res = await axios({
         method:"POST",
-        url:"http://localhost:3000/addContact",
+        url:"https://vinhomesgroup.herokuapp.com/addContact",
         data:{
             token: getCookie("token"),
             idSearch: idSearch,
